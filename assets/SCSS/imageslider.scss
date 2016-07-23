@@ -1,0 +1,244 @@
+/************************************************************
+*															*
+* PHP JS CSS Image Slider v1.0.0							*
+*															*
+* Copyright 2016, PedroHenriques 							*
+* http://www.pedrojhenriques.com 							*
+* https://github.com/PedroHenriques 						*
+*															*
+* Free to use under the MIT license.			 			*
+* http://www.opensource.org/licenses/mit-license.php 		*
+*															*
+************************************************************/
+
+// variables
+$arrow_width: 5%; // width of each arrow (the previous and next arrows)
+$duration_aboveimages: 300ms; // transition duration for all elements flagged as "on top of images"
+
+// imports
+@import "mixins.scss";
+@import "partials/ImgFocus-version.scss";
+@import "partials/ShowAll-version.scss";
+
+div.slider {
+	position: relative;
+	width: 750px;
+	height: 500px;
+	overflow: hidden;
+
+	font-size: 1rem;
+	font-weight: normal;
+
+	* {
+		@include box-sizing(border-box);
+	}
+
+	&:hover div.slider_buttons.hidden,
+	&:hover div.slider_descriptions.hidden,
+	&:hover div.slider_images div.arrow_prev.hidden,
+	&:hover div.slider_images div.arrow_next.hidden, {
+		opacity: 1;
+	}
+
+	div.slider_buttons {
+		position: relative;
+		width: 100%;
+		overflow: hidden;
+
+		&.adjust_arrows {
+			max-width: 100% - 2 * $arrow_width;
+		}
+
+		&.hidden {
+			opacity: 0;
+
+			@include transition(opacity #{$duration_aboveimages} ease-in-out);
+		}
+
+		span.slider_item_button {
+			position: relative;
+			float: left;
+			text-align: center;
+
+			@include user-select(none);
+
+			cursor: pointer;
+
+			&.active {
+				border-color: rgb(255, 0, 0);
+			}
+
+			&.inactive {
+				border-color: rgb(0, 0, 0);
+			}
+		}
+	}
+
+	div.slider_descriptions {
+		position: relative;
+		width: 100%;
+
+		&.adjust_arrows {
+			width: 100% - 2 * $arrow_width;
+		}
+
+		&.hidden {
+			opacity: 0;
+
+			@include transition(opacity #{$duration_aboveimages} ease-in-out);
+		}
+
+		span.slider_item_description {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			margin: 0;
+			padding: 0rem 0.625rem;
+			word-wrap: break-word;
+
+			&.visible {
+				display: block;
+			}
+
+			&.hidden {
+				display: none;
+			}
+		}
+	}
+
+	div.slider_images {
+		position: relative;
+		width: 100%;
+		overflow: hidden;
+
+		&.white {
+			background-color: white;
+		}
+
+		&.black {
+			background-color: black;
+		}
+
+		span.slider_item_image {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			background-repeat: no-repeat;
+			background-size: contain;
+			background-position: 50% 50%;
+
+			&.front {
+				z-index: 1;
+				opacity: 1;
+
+				left: 0;
+			}
+
+			&.back,
+			&.middle {
+				z-index: 0;
+				opacity: 0;
+
+				left: 0;
+			}
+		}
+
+		&.switch_opacity.with_transition {
+			span.slider_item_image {
+				@include transition(opacity 300ms ease-in-out);
+			}
+		}
+
+		&.switch_slide.with_transition {
+			span.slider_item_image {
+				@include transition(left 300ms ease-in-out);
+			}
+		}
+
+		&.forward {
+			&.switch_slide {
+				span.slider_item_image {
+					&.middle {
+						z-index: 1;
+						opacity: 1;
+
+						left: -100%;
+					}
+
+					&.front {
+						left: 0;
+					}
+
+					&.back {
+						z-index: 1;
+
+						left: 100%;
+					}
+				}
+			}
+		}
+		&.backward {
+			&.switch_slide {
+				span.slider_item_image {
+					&.middle {
+						z-index: 1;
+						opacity: 1;
+
+						left: 100%;
+					}
+
+					&.front {
+						left: 0;
+					}
+
+					&.back {
+						z-index: 1;
+
+						left: -100%;
+					}
+				}
+			}
+		}
+
+		div.arrow_prev,
+		div.arrow_next {
+			position: absolute;
+			z-index: 100;
+			width: $arrow_width;
+			height: 100%;
+
+			background: rgba(0, 0, 0, 0.6);
+
+			font-weight: bold;
+			color: white;
+
+			cursor: pointer;
+
+			@include user-select(none);
+
+			span {
+				position: absolute;
+
+				$x: 50%;
+				$y: 50%;
+				left: $x;
+				top: $y;
+				@include translate(-$x, -$y);
+			}
+
+			&.hidden {
+				opacity: 0;
+
+				@include transition(opacity #{$duration_aboveimages} ease-in-out);
+			}
+		}
+
+		div.arrow_prev {
+			left: 0;
+		}
+
+		div.arrow_next {
+			right: 0;
+		}
+	}
+}

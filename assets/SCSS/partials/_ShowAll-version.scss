@@ -1,0 +1,55 @@
+div.slider.ShowAll {
+	div.slider_buttons {
+		height: 5%;
+
+		span.slider_item_button {
+			height: 100%;
+			margin-bottom: 0;
+			padding-top: 0.3125rem;
+
+			-webkit-border-top-left-radius: 0.5rem;
+			-webkit-border-top-right-radius: 0.5rem;
+			-moz-border-top-left-radius: 0.5rem;
+			-moz-border-top-right-radius: 0.5rem;
+			border-top-left-radius: 0.5rem;
+			border-top-right-radius: 0.5rem;
+
+			&.active,
+			&.inactive {
+				border-top-width: 0.0625rem;
+				border-bottom-width: 0;
+				border-left-width: 0.0625rem;
+				border-right-width: 0.0625rem;
+				border-style: solid;
+			}
+
+			&.active {
+				background-color: rgba(0, 0, 255, 0.35);
+			}
+		}
+	}
+
+	div.slider_descriptions {
+		height: 10%;
+
+		background-color: rgba(0, 0, 255, 0.2);
+
+		border-top: 0.0625rem;
+		border-bottom: 0;
+		border-left: 0.0625rem;
+		border-right: 0.0625rem;
+		border-style: solid;
+		border-color: rgb(255, 0, 0);
+	}
+
+	div.slider_images {
+		height: 85%;
+
+		border-top: 0;
+		border-bottom: 0.0625rem;
+		border-left: 0.0625rem;
+		border-right: 0.0625rem;
+		border-style: solid;
+		border-color: rgb(255, 0, 0);
+	}
+}

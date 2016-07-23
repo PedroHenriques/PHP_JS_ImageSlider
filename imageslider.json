@@ -1,0 +1,25 @@
+{
+	"slider 1 name" : {
+		"1" : {
+			"button" : "this is the text for the 1st image's button",
+			"description" : "this is the text for the 1st image's description"
+		},
+
+		"2" : {
+			"button" : "this is the text for the 2nd image's button",
+			"description" : "this is the text for the 2nd image's description"
+		}
+	},
+
+	"slider 2 name" : {
+		"1" : {
+			"button" : "this is the text for the 1st image's button",
+			"description" : "this is the text for the 1st image's description"
+		},
+
+		"2" : {
+			"button" : "this is the text for the 2nd image's button",
+			"description" : "this is the text for the 2nd image's description"
+		}
+	}
+}

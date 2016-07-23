@@ -1,0 +1,140 @@
+div.slider.ImgFocus {
+	// local variables
+	$slider_buttons_height: 10%;
+	$button_1dimension: 1.5rem;
+	$button_padding: 0.5rem;
+
+	&:hover div.slider_buttons.hidden {
+		bottom: $slider_buttons_height;
+	}
+	&:hover div.slider_descriptions.hidden {
+		top: 0%;
+	}
+	&:hover div.slider_images div.arrow_prev.hidden {
+		left: 0%;
+	}
+	&:hover div.slider_images div.arrow_next.hidden {
+		right: 0%;
+	}
+
+	div.slider_buttons {
+		position: absolute;
+		z-index: 100;
+		width: auto;
+		height: $button_1dimension + 2 * $button_padding;
+		padding: $button_padding $button_padding;
+		background-color: rgba(255, 255, 255, 0.3);
+
+		$x: 50%;
+		$y: 0%;
+		left: $x;
+		@include translate(-$x, -$y);
+
+		&.hidden {
+			opacity: 1;
+			bottom: -($button_1dimension + 2 * $button_padding);
+
+			@include transition(bottom #{$duration_aboveimages} ease-in-out);
+		}
+
+		&.visible {
+			opacity: 1;
+			bottom: $slider_buttons_height;
+		}
+
+		span {
+			&.slider_item_button {
+				width: $button_1dimension;
+			    height: $button_1dimension;
+			    margin-right: 1rem;
+			    background-color: black;
+			}
+
+			&:last-child {
+			    margin-right: 0;
+			}
+
+			&.slider_item_button {
+				&.square {
+					-webkit-border-radius: 0;
+					-moz-border-radius: 0;
+					border-radius: 0;
+				}
+
+				&.circle {
+					-webkit-border-radius: 50%;
+					-moz-border-radius: 50%;
+					border-radius: 50%;
+				}
+
+				&.active,
+				&.inactive {
+					border-top-width: 0.0625rem;
+					border-bottom-width: 0.0625rem;
+					border-left-width: 0.0625rem;
+					border-right-width: 0.0625rem;
+					border-style: solid;
+				}
+
+				&.active {
+					background-color: grey;
+				}
+			}
+		}
+	}
+
+	div.slider_descriptions {
+		position: absolute;
+		z-index: 100;
+		width: 100%;
+		height: 20%;
+
+		border: 0;
+
+		background-color: rgba(0, 0, 0, 0.6);
+		color: white;
+
+		$x: 50%;
+		$y: 0%;
+		left: $x;
+		@include translate(-$x, -$y);
+
+		&.hidden {
+			opacity: 1;
+			top: -20%;
+
+			@include transition(top #{$duration_aboveimages} ease-in-out);
+		}
+	}
+
+	div.slider_images {
+		height: 100%;
+
+		&.white {
+			background-color: white;
+			border: 0.0625rem solid black;
+		}
+
+		&.black {
+			background-color: black;
+			border: 0.0625rem solid white;
+		}
+
+		div.arrow_prev.hidden,
+		div.arrow_next.hidden {
+			opacity: 1;
+		}
+
+		div.arrow_prev.hidden {
+			left: -$arrow_width;
+
+			@include transition(left #{$duration_aboveimages} ease-in-out);
+		}
+
+		div.arrow_next.hidden {
+			right: -$arrow_width;
+
+			@include transition(right #{$duration_aboveimages} ease-in-out);
+		}
+	}
+}

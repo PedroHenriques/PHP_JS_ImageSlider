@@ -1,0 +1,28 @@
+@mixin box-sizing($value) {
+	-webkit-box-sizing: $value;
+	-moz-box-sizing: $value;
+	-ms-box-sizing: $value;
+	box-sizing: $value;
+}
+
+@mixin user-select($value) {
+	-webkit-user-select: $value;
+	-moz-user-select: $value;
+	-ms-user-select: $value;
+	user-select: $value;
+}
+
+@mixin translate($x, $y) {
+	-webkit-transform: translate($x, $y);
+	-moz-transform: translate($x, $y);
+	-ms-transform: translate($x, $y);
+	-o-transform: translate($x, $y);
+	transform: translate($x, $y);
+}
+
+@mixin transition($value...) {
+	-webkit-transition: $value;
+	-moz-transition: $value;
+	-o-transition: $value;
+	transition: $value;
+}
